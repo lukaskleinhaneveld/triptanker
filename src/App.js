@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { NavPanel, ComponentLinks } from './components/navpanel/NavPanel';
+import UserContext from './contexts/userConext';
+import './styles/style.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const [user, setUser] = useState({
+		name: 'Lukas',
+	});
+	return (
+		<Router>
+			<UserContext.Provider value={user}>
+				<div className='wrapper-app'>
+					<div className='wrapper-sidebar'>
+						<NavPanel user={user} />
+					</div>
+					<div className='wrapper-content'>
+						<Routes>
+							{ComponentLinks.map((comp, i) => (
+								<Route
+									key={i}
+									path={comp.path}
+									element={comp.component}
+								/>
+							))}
+						</Routes>
+					</div>
+				</div>
+			</UserContext.Provider>
+		</Router>
+	);
+};
 
 export default App;
