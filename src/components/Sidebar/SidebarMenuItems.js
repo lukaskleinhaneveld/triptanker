@@ -1,5 +1,5 @@
-import Home from '../Home/Home';
-import Profile from '../Profile/Profile';
+import Home from '../Home/home';
+import Profile from '../Profile/profile';
 
 const SidebarMenuItems = [
 	{

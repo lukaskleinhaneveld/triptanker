@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import './Styles/style.scss';
-import Sidebar from './Components/Sidebar/Sidebar';
-import SidebarMenuItems from './Components/Sidebar/SidebarMenuItems';
+import Sidebar from './Components/Sidebar/sidebar';
+import SidebarMenuItems from './Components/Sidebar/sidebarMenuItems';
 import { Routes, Route } from 'react-router-dom';
-import UserContext from './Contexts/UserContext';
-import ErrorComponent from './Components/Error/ErrorComponent';
+import UserContext from './Contexts/userContext';
+import ErrorComponent from './Components/Error/errorComponent';
 
 const App = () => {
 	const user = useContext(UserContext);

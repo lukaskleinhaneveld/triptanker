@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import SidebarMenuItems from './SidebarMenuItems';
+import SidebarMenuItems from './sidebarMenuItems';
 
 export const Item = ({
 	path,
@@ -76,7 +76,7 @@ const Sidebar = () => {
 			>
 				{sidebarState.expanded ? (
 					<img
-						src={require('../../media/triptanker_logo.png')}
+						src={require('../../Media/triptanker_logo.png')}
 						alt='logo'
 						className='logo'
 					/>
