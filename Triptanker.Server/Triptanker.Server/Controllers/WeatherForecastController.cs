@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http.Cors;
 
 namespace Triptanker.Server.Controllers
 {

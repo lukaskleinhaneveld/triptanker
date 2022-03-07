@@ -5,7 +5,7 @@ const useData = (url) => {
     const [query, setQuery] = useState({});
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
     const [cancelToken, setCancelToken] = useState(undefined);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const useData = (url) => {
         }
 
         const fetchData = async() => {
-            setError('');
+            setError(null);
             setLoading(true);
             setData([]);
 
@@ -22,13 +22,13 @@ const useData = (url) => {
             setCancelToken(token);
 
             try {
-                const resp = await axios.get(url, {
+                const req = await axios.get(url, {
                     cancelToken: token.token,
                     params: {
                         query: query
                     },
                 });
-                setData(resp.data);
+                setData(req.data);
             } catch (err) {
                 if (err.message === "REQUEST_CANCELED") return;
                 setError(err.message);
@@ -40,7 +40,7 @@ const useData = (url) => {
         fetchData();
     }, [ ]);
 
-    return [data, query, setQuery, loading, error];
+    return [ data, loading, error ];
 }
 
 useData.prototypes = {
