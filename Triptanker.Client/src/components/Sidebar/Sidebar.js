@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SidebarMenuItems from './sidebarMenuItems';
+import './sidebarStyle.scss';
 
 export const Item = ({
 	path,
@@ -70,21 +71,29 @@ const Sidebar = () => {
 					></button>
 				)}
 			</span>
-			<div
-				className={`menu-logo ${
-					sidebarState.expanded ? 'expanded' : 'collapsed'
-				}`}
-			>
-				{sidebarState.expanded ? (
-					<img
-						src={require('../../Media/triptanker_logo.png')}
-						alt='logo'
-						className='logo'
-					/>
-				) : (
-					<span className='fa-solid fa-gas-pump'></span>
-				)}
-			</div>
+			
+			<Link style={{  }} to={'/'} onClick={() =>
+				setSidebarState((prev) => ({
+					...prev,
+					activePath: '/',
+				}))
+				}>
+				<div
+					className={`menu-logo ${
+						sidebarState.expanded ? 'expanded' : 'collapsed'
+					}`}
+				>
+					{sidebarState.expanded ? (
+						<img
+							src={require('../../Media/triptanker_logo.png')}
+							alt='logo'
+							className='logo'
+						/>
+					) : (
+						<span className='fa-solid fa-gas-pump'></span>
+					)}
+				</div>
+			</Link>
 			<div className='clearfix' />
 			<div
 				className={`sidebar ${

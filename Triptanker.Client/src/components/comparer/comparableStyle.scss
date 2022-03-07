@@ -1,0 +1,12 @@
+.comparable-wrapper {
+    display: flex;
+    background-color: orange;
+    flex: 1;
+}
+
+.comparable-data {
+    padding: 12px;
+    background-color: green;
+    height: min-content;
+    margin: 15px;
+}

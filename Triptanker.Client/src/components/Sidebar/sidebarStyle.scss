@@ -1,0 +1,104 @@
+.wrapper-sidebar {
+    position: relative;
+    color: rgb(212, 212, 212);
+    background-color: rgb(212, 212, 212);
+    z-index: 2;
+
+    a {
+        color: transparent;
+    }
+
+    .menu-logo {
+        padding-bottom: 15px;
+
+        &.expanded {
+            .logo {
+                transition: ease-in-out 0.2s;
+                width: 200px;
+            }
+        }
+        &.collapsed {
+            display: flex;
+            padding-top: 5px;
+            justify-content: space-around;
+            font-size: 35px;
+
+            .logo {
+                transition: ease-in-out 0.2s;
+                width: 75px;
+            }
+        }
+    }
+
+    .sidebar-toggle {
+        border: none;
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        background-color: rgba(197, 197, 197);
+        border-radius: 50%;
+        top: 6px;
+        right: -18px;
+        position: absolute;
+    }
+
+    .sidebar {
+        transition: ease-in-out 0.2s;
+
+        &.expanded {
+            transition: ease-in-out 0.2s;
+            width: 200px;
+        }
+
+        &.collapsed {
+            transition: ease-in-out 0.2s;
+            width: 75px;
+        }
+
+        .menu-list {
+            list-style-type: none;
+            padding: 5px 5px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+
+            .menu-item {
+                padding: 5px;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.1);
+                    cursor: pointer;
+                }
+
+                &.active {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+
+                .menu-item-icon {
+                    margin-right: 8px;
+                    font-size: 30px;
+                    width: 40px;
+                    display: flex;
+                    justify-content: space-around;
+                }
+
+                .menu-item-title {
+                    margin-left: 10px;
+                    &.expanded {
+                        transition: ease-in-out 0.2s;
+                        display: block;
+                    }
+                    &.collapsed {
+                        transition: ease-in-out 0.2s;
+                        display: none;
+                    }
+                }
+
+                a {
+                    text-decoration: none;
+                    // color: rgb(212, 212, 212);
+                }
+            }
+        }
+    }
+}
