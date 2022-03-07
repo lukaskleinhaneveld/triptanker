@@ -8,11 +8,11 @@ export const Item = ({
 	icon,
 	sidebarState,
 	isActive,
-	updateActiveIndex,
+	updateActivePath,
 }) => (
 	<li
 		className={`menu-item ${isActive ? 'active' : ''}`}
-		onClick={() => updateActiveIndex()}
+		onClick={() => updateActivePath()}
 	>
 		<Link to={path}>
 			<span
@@ -40,13 +40,14 @@ export const Item = ({
 const Sidebar = () => {
 	const [sidebarState, setSidebarState] = useState({
 		expanded: true,
-		activeIndex: 0,
+		activePath: window.location.pathname,
 	});
 	const closeSidebar = () =>
 		setSidebarState((prev) => ({ ...prev, expanded: false }));
 
 	const showSidebar = () =>
 		setSidebarState((prev) => ({ ...prev, expanded: true }));
+
 
 	return (
 		<div className={'wrapper-sidebar'}>
@@ -91,17 +92,17 @@ const Sidebar = () => {
 				}`}
 			>
 				<ul className='menu-list'>
-					{SidebarMenuItems.map((comp, compIndex) => (
+					{SidebarMenuItems.map((comp, index) => (
 						<Item
-							key={compIndex}
-							isActive={sidebarState.activeIndex === compIndex}
+							key={index}
+							isActive={sidebarState.activePath === comp.path}
 							title={comp.title}
 							icon={comp.icon}
 							path={comp.path}
-							updateActiveIndex={() =>
+							updateActivePath={() =>
 								setSidebarState((prev) => ({
 									...prev,
-									activeIndex: compIndex,
+									activePath: comp.path,
 								}))
 							}
 							sidebarState={sidebarState}
