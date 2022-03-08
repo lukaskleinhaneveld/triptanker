@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddOpenDataRdwNlServices(opt =>
 {
-    opt.AppToken = "wROHRAFVQeW6zTZjZEWh3SSJf";
+    opt.AppToken = builder.Configuration["triptanker:RDWAPIkey"];
     opt.OpenDataRdwNlServiceAddress = "https://opendata.rdw.nl";
 });
 
