@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
+    <PackageReference Include="OpenDataRdwNL.Models" Version="1.1.4" />
+    <PackageReference Include="OpenDataRdwNL.Sdk" Version="1.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 

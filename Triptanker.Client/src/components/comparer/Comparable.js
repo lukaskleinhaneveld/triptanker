@@ -2,9 +2,7 @@ import React from "react";
 import * as RDW_service from '../../Services/RDW_service';
 
 const Comparable = ({ comparable }) => {
-
-    // TODO: Fix CORS for RDW API
-    const resp = RDW_service.getByLicenseplate(comparable.licensePlate.replace(/-/g, ''));
+    const resp = RDW_service.getByLicenseplate(comparable.licensePlate.replace(/-/g, '').toUpperCase());
     console.log('resp: ', resp);
 
     return (<>
