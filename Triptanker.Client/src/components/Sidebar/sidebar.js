@@ -1,18 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SidebarMenuItems from './sidebarMenuItems';
 import './sidebarStyle.scss';
 
-interface Item {
-	path: string;
-	title: string;
-	icon: string;
-	sideBarState: object;
-	isActive: boolean;
-	updateActivePath: () => void;
-};
-
-export const Item:FC<Item> = ({
+export const Item = ({
 	path,
 	title,
 	icon,
@@ -58,7 +49,6 @@ const Sidebar = () => {
 	const showSidebar = () =>
 		setSidebarState((prev) => ({ ...prev, expanded: true }));
 
-
 	return (
 		<div className={'wrapper-sidebar'}>
 			<span className='wrapper-menu-toggle'>
@@ -80,13 +70,17 @@ const Sidebar = () => {
 					></button>
 				)}
 			</span>
-			
-			<Link style={{  }} to={'/'} onClick={() =>
-				setSidebarState((prev) => ({
-					...prev,
-					activePath: '/',
-				}))
-				}>
+
+			<Link
+				style={{}}
+				to={'/'}
+				onClick={() =>
+					setSidebarState((prev) => ({
+						...prev,
+						activePath: '/',
+					}))
+				}
+			>
 				<div
 					className={`menu-logo ${
 						sidebarState.expanded ? 'expanded' : 'collapsed'
@@ -94,7 +88,7 @@ const Sidebar = () => {
 				>
 					{sidebarState.expanded ? (
 						<img
-							src={require('../../Media/triptanker_logo.png')}
+							src={require('../../media/triptanker_logo.png')}
 							alt='logo'
 							className='logo'
 						/>

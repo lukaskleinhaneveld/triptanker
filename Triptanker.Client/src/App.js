@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import './Styles/mainStyles.scss';
-import Sidebar from './Components/Sidebar/sidebar';
-import Headerbar from './Components/Headerbar/headerbar';
-import SidebarMenuItems from './Components/Sidebar/sidebarMenuItems';
+import Sidebar from './components/Sidebar/sidebar';
+import Headerbar from './components/Headerbar/headerbar';
+import SidebarMenuItems from './components/Sidebar/sidebarMenuItems';
 import { Routes, Route } from 'react-router-dom';
 import UserContext from './Contexts/userContext';
-import ErrorComponent from './Components/Error/errorComponent';
+import ErrorComponent from './components/Error/errorComponent';
 
 const App = () => {
 	const user = useContext(UserContext);
@@ -17,7 +17,7 @@ const App = () => {
 					<Headerbar />
 					<div className='wrapper-content'>
 						<Routes>
-							{SidebarMenuItems.map((comp: any, index: Key) => (
+							{SidebarMenuItems.map((comp, index) => (
 								<Route
 									key={index}
 									path={comp.path}

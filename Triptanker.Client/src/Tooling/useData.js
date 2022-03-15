@@ -29,51 +29,49 @@ import axios from 'axios';
 //
 // Response: { access_token: ACCESS_TOKEN }
 
-
 const useData = (promise) => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [cancelToken, setCancelToken] = useState(undefined);
+	const [data, setData] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+	const [cancelToken, setCancelToken] = useState(undefined);
 
-    useEffect(() => {
-        if (cancelToken) {
-            cancelToken.cancel("REQUEST_CANCELED");
-        }
+	useEffect(() => {
+		if (cancelToken) {
+			cancelToken.cancel('REQUEST_CANCELED');
+		}
 
-        const fetchData = async() => {
-            setError(null);
-            setLoading(true);
-            setData([]);
+		const fetchData = async () => {
+			setError(null);
+			setLoading(true);
+			setData([]);
 
-            const token = axios.CancelToken.source();
-            setCancelToken(token);
+			const token = axios.CancelToken.source();
+			setCancelToken(token);
 
-            try {
-                Promise.resolve(promise).then(value => {
-                    setData(value);
-                });
-                setData(data);
-            } catch (err) {
-                if (err.message === "REQUEST_CANCELED") return;
-                setError(err.message);
-            } finally {
-                setCancelToken(undefined);
-                setLoading(false);
-            }
-        };
+			try {
+				Promise.resolve(promise).then((value) => {
+					setData(value);
+				});
+				setData(data);
+			} catch (err) {
+				if (err.message === 'REQUEST_CANCELED') return;
+				setError(err.message);
+			} finally {
+				setCancelToken(undefined);
+				setLoading(false);
+			}
+		};
 
-        fetchData();
-    }, [ ]);
-    
-    if (!promise) return;
+		fetchData();
+	}, []);
 
-    return [ data, loading, error ];
-}
+	if (!promise) return;
+
+	return [data, loading, error];
+};
 
 useData.prototypes = {
-    promise: Promise,
-}
-
+	promise: Promise,
+};
 
 export default useData;
