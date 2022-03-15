@@ -17,7 +17,7 @@ const App = () => {
 					<Headerbar />
 					<div className='wrapper-content'>
 						<Routes>
-							{SidebarMenuItems.map((comp, index) => (
+							{SidebarMenuItems.map((comp: any, index: Key) => (
 								<Route
 									key={index}
 									path={comp.path}

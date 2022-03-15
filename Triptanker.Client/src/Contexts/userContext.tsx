@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 
-const User = {
+const User: Object = {
 	name: 'Admin',
 };
 const UserContext = createContext(User);

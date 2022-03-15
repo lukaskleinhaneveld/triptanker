@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SidebarMenuItems from './sidebarMenuItems';
 import './sidebarStyle.scss';
 
-export const Item = ({
+interface Item {
+	path: string;
+	title: string;
+	icon: string;
+	sideBarState: object;
+	isActive: boolean;
+	updateActivePath: () => void;
+};
+
+export const Item:FC<Item> = ({
 	path,
 	title,
 	icon,

@@ -30,9 +30,7 @@ import axios from 'axios';
 // Response: { access_token: ACCESS_TOKEN }
 
 
-const useData = (url, body) => {
-    console.log('url, body: ', url, body)
-    const [query, setQuery] = useState({});
+const useData = (promise) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -52,13 +50,10 @@ const useData = (url, body) => {
             setCancelToken(token);
 
             try {
-                const req = await axios.get(url, {
-                    cancelToken: token.token,
-                    params: {
-                        query: query
-                    },
+                Promise.resolve(promise).then(value => {
+                    setData(value);
                 });
-                setData(req.data);
+                setData(data);
             } catch (err) {
                 if (err.message === "REQUEST_CANCELED") return;
                 setError(err.message);
@@ -68,40 +63,17 @@ const useData = (url, body) => {
             }
         };
 
-        const postData = async() => {
-            setError(null);
-            setLoading(true);
-            setData([]);
-
-            const token = axios.CancelToken.source();
-            setCancelToken(token);
-
-            try {
-                const req = await axios.post(url, body);
-                setData(req.data);
-            } catch (err) {
-                if (err.message === "REQUEST_CANCELED") return;
-                setError(err.message);
-            } finally {
-                setCancelToken(undefined);
-                setLoading(false);
-            }
-        }
-
-        if (body) {
-            postData();
-        } else {
-            fetchData();
-        }
+        fetchData();
     }, [ ]);
     
-    if (!url) return;
+    if (!promise) return;
 
     return [ data, loading, error ];
 }
 
 useData.prototypes = {
-    url: String,
+    promise: Promise,
 }
+
 
 export default useData;
