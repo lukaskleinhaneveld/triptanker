@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OpenDataRdwNL.Sdk.Extensions;
-using System.Web.Http;
-using System.Web.Http.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 

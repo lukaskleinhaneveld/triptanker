@@ -1,3 +1,5 @@
+using System;
+
 namespace Triptanker.Server
 {
     public class WeatherForecast
