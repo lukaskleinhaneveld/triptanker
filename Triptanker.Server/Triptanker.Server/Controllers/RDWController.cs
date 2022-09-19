@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OpenDataRdwNL.Models.ServiceResults;
@@ -12,6 +13,7 @@ namespace Triptanker.Server.Controllers
     public class RDWController : ControllerBase
     {
         private readonly IOpenDataRdwEnService _dataRdwEnService;
+        private static readonly HttpClient client = new HttpClient();
 
         public RDWController(IOpenDataRdwEnService dataRdwEnService)
         {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as RDW_service from '../../Services/RDW_service';
 import useData from '../../Tooling/useData';
 import Comparable from './comparable';
@@ -8,6 +8,29 @@ const ComparableWrapper = () => {
 	// comparable.licensePlate.replace(/-/g, '').toUpperCase()
 	const [data] = useData(RDW_service.getByLicenseplate('XS548S'));
 	console.log('data: ', data);
+	const [plates, setPlates] = useState(['']);
+	const [carData, setCarData] = useState();
+
+	// const getData = () => {
+	// 	plates.map((plate) => {
+	// 		setCarData([...carData, plate]);
+	// 	});
+	// };
+
+	// const [posts, setPosts] = useState([]);
+
+	// useEffect(() => {
+	// 	console.log('plates: ', plates);
+	// 	fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			console.log(data);
+	// 			setPosts(data);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err.message);
+	// 		});
+	// }, [plates]);
 
 	// const comparables = [
 	//     {
@@ -31,8 +54,15 @@ const ComparableWrapper = () => {
 	return (
 		<>
 			<div className={'comparable-wrapper'}>
-				{data.map((comparable, i) => {
-					return <Comparable key={i} comparable={comparable} />;
+				{plates.map((comparable, i) => {
+					return (
+						<Comparable
+							key={i}
+							comparable={comparable}
+							plates={plates}
+							setPlates={setPlates}
+						/>
+					);
 				})}
 			</div>
 		</>

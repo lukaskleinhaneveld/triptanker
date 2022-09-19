@@ -1,5 +1,5 @@
 import React from 'react';
-import ComparableWrapper from '../comparer/comparableWrapper';
+import ComparableWrapper from '../Comparer/comparableWrapper';
 
 const Home = () => {
 	return (
