@@ -24,11 +24,12 @@ const Comparable = ({ currentPlateKey, plates, setPlates }) => {
 	const submit = (event) => {
 		event.preventDefault();
 		if (debouncedPlate !== "" && plates.length) {
-			// for (let p in plates) {
-			// 	if (plates[p] === debouncedPlate) {
-			// 		console.log("Test: ", plates[p]);
-			// 	}
-			// }
+			for (let p in plates) {
+				if (plates[p].plate === debouncedPlate) {
+					alert(`Je zoekt al op ${debouncedPlate}!`);
+					return;
+				}
+			}
 			fetchData(debouncedPlate);
 			if (plates.length !== 1) {
 				setPlates(() =>
@@ -67,7 +68,6 @@ const Comparable = ({ currentPlateKey, plates, setPlates }) => {
 				{!!carData && (
 					<>
 						<hr />
-						{{ carData }}
 						<span
 							style={{
 								display: !!carData ? "inline-block" : "none",
@@ -78,11 +78,7 @@ const Comparable = ({ currentPlateKey, plates, setPlates }) => {
 							<br />
 							Brand: {carData.brand}
 							<br />
-							model: {carData.model}
-							<br />
 							Trade name: {carData.tradeName}
-							<br />
-							year: {carData.year}
 							<br />
 						</span>
 					</>
