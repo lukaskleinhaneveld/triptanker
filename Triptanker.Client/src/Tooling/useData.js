@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 // const [API_data, setApiData] = useState([
 //     { key: '4xyvrc0n9i7lb35fy4fmeisre'},
@@ -29,15 +29,17 @@ import axios from 'axios';
 //
 // Response: { access_token: ACCESS_TOKEN }
 
-const useData = (promise) => {
+const useData = (promise, options = {}) => {
+	const { triggers = [] } = options;
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [cancelToken, setCancelToken] = useState(undefined);
+	const [trigger, setTrigger] = useState();
 
 	useEffect(() => {
 		if (cancelToken) {
-			cancelToken.cancel('REQUEST_CANCELED');
+			cancelToken.cancel("REQUEST_CANCELED");
 		}
 
 		const fetchData = async () => {
@@ -54,7 +56,7 @@ const useData = (promise) => {
 				});
 				setData(data);
 			} catch (err) {
-				if (err.message === 'REQUEST_CANCELED') return;
+				if (err.message === "REQUEST_CANCELED") return;
 				setError(err.message);
 			} finally {
 				setCancelToken(undefined);
@@ -63,11 +65,11 @@ const useData = (promise) => {
 		};
 
 		fetchData();
-	}, []);
+	}, triggers);
 
 	if (!promise) return;
 
-	return [data, loading, error];
+	return [data, (options = { loading, error, trigger })];
 };
 
 useData.prototypes = {

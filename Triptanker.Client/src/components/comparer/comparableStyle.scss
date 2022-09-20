@@ -1,10 +1,31 @@
 .comparable-wrapper {
 	display: flex;
-	background-color: orange;
+	// background-color: orange;
 	flex: 1;
 }
 
 .comparable-data {
+	min-width: 200px;
+	min-height: 100px;
+	padding: 12px;
+	height: min-content;
+	margin: 15px;
+	border: 2px solid black;
+	border-radius: 5px;
+
+	.getCarData {
+		border: none;
+		background-color: transparent;
+		color: purple;
+	}
+}
+
+.comparable-data-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 200px;
+	min-height: 100px;
 	padding: 12px;
 	height: min-content;
 	margin: 15px;
@@ -14,6 +35,9 @@
 	.addPlate {
 		border: none;
 		background-color: transparent;
-		font-weight: bolder;
+	}
+
+	&:hover {
+		cursor: pointer;
 	}
 }

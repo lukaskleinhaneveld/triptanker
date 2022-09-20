@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext } from "react";
 
 const themes = {
 	light: {
-		foreground: '#000000',
-		background: '#eeeeee',
+		foreground: "#000000",
+		background: "#eeeeee",
 	},
 	dark: {
-		foreground: '#ffffff',
-		background: '#222222',
+		foreground: "#ffffff",
+		background: "#222222",
 	},
 };
 
@@ -33,8 +33,7 @@ function ThemedButton() {
 	const theme = useContext(ThemeContext);
 	return (
 		<button
-			style={{ background: theme.background, color: theme.foreground }}
-		>
+			style={{ background: theme.background, color: theme.foreground }}>
 			I am styled by theme context!
 		</button>
 	);

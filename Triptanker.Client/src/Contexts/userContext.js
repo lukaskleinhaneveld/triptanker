@@ -1,7 +1,7 @@
-import React, { createContext } from 'react';
+import { createContext } from "react";
 
-const User: Object = {
-	name: 'Admin',
+const User = {
+	name: "Admin",
 };
 const UserContext = createContext(User);
 

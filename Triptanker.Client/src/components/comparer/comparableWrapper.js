@@ -1,69 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import * as RDW_service from '../../Services/RDW_service';
-import useData from '../../Tooling/useData';
-import Comparable from './comparable';
-import './comparableStyle.scss';
+import React, { useState } from "react";
+import Comparable from "./comparable";
+import "./comparableStyle.scss";
 
 const ComparableWrapper = () => {
-	// comparable.licensePlate.replace(/-/g, '').toUpperCase()
-	const [data] = useData(RDW_service.getByLicenseplate('XS548S'));
-	console.log('data: ', data);
-	const [plates, setPlates] = useState(['']);
-	const [carData, setCarData] = useState();
+	const [plates, setPlates] = useState([{ key: 0, plate: "" }]);
 
-	// const getData = () => {
-	// 	plates.map((plate) => {
-	// 		setCarData([...carData, plate]);
-	// 	});
-	// };
+	const addComparable = () => {
+		let canAddPlate = true;
 
-	// const [posts, setPosts] = useState([]);
-
-	// useEffect(() => {
-	// 	console.log('plates: ', plates);
-	// 	fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			console.log(data);
-	// 			setPosts(data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err.message);
-	// 		});
-	// }, [plates]);
-
-	// const comparables = [
-	//     {
-	//         licensePlate: 'XS-548-S',
-	//         bodyType: 'Hatchback',
-	//         make: 'Mazda',
-	//         model: '3',
-	//         variant: 'MPS/Mazdaspeed',
-	//         year: '2007',
-	//     },
-	//     {
-	//         licensePlate: '48-GP-RV',
-	//         bodyType: 'Sedan',
-	//         make: 'BMW',
-	//         model: '318i',
-	//         variant: 'Business',
-	//         year: '2007',
-	//     },
-	// ];
+		plates.forEach((plate) => {
+			if (plate.plate === "") {
+				canAddPlate = false;
+			}
+		});
+		if (canAddPlate) {
+			setPlates([...plates, { key: plates.length, plate: "" }]);
+		} else {
+			alert("Je hebt een plaat nog niet ingevuld!");
+		}
+	};
 
 	return (
 		<>
-			<div className={'comparable-wrapper'}>
-				{plates.map((comparable, i) => {
+			<div className={"comparable-wrapper"}>
+				{plates.map((plate) => {
 					return (
 						<Comparable
-							key={i}
-							comparable={comparable}
+							key={plate.key}
+							currentPlateKey={plate.key}
 							plates={plates}
 							setPlates={setPlates}
 						/>
 					);
 				})}
+				<div
+					className="comparable-data-placeholder"
+					onClick={addComparable}>
+					<span>
+						<i
+							className={"bi bi-plus-circle"}
+							style={{ fontSize: "30px" }}></i>
+					</span>
+				</div>
 			</div>
 		</>
 	);
