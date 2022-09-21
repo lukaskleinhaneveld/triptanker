@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDebounce } from "../../Tooling/useDebounce";
 import * as RDW_service from "../../Services/RDW_service";
 const Comparable = ({ currentPlateKey, plates, setPlates }) => {
@@ -45,6 +45,9 @@ const Comparable = ({ currentPlateKey, plates, setPlates }) => {
 		}
 	};
 
+	useEffect(() => {
+		console.log("carData: ", carData);
+	}, [carData]);
 	return (
 		<>
 			<div className={"comparable-data"}>
@@ -68,19 +71,22 @@ const Comparable = ({ currentPlateKey, plates, setPlates }) => {
 				{!!carData && (
 					<>
 						<hr />
-						<span
+						<div
 							style={{
 								display: !!carData ? "inline-block" : "none",
+								overflowY: "auto",
+								maxHeight: "700px",
 							}}>
-							License plate : {carData.licensePlate}
-							<br />
-							Body type: {carData.design}
-							<br />
-							Brand: {carData.brand}
-							<br />
-							Trade name: {carData.tradeName}
-							<br />
-						</span>
+							<ul>
+								{Object.entries(carData).map((data) => {
+									return (
+										<li>
+											{data[0]}: {data[1]}
+										</li>
+									);
+								})}
+							</ul>
+						</div>
 					</>
 				)}
 			</div>
